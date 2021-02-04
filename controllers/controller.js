@@ -5,6 +5,8 @@ const { OAuth2Client } = require('google-auth-library');
 
 class Controller {
   static login(req, res, next) {
+    const {email, password} = req.body
+    console.log(email, password);
     let inputData = {
       email: req.body.email,
       password: req.body.password
@@ -72,7 +74,7 @@ class Controller {
       })
   }
   static getComic(req, res, next) {
-    const { title } = req.body
+    const { title } = req.query
     axios.get(`https://superheroapi.com/api/${process.env.SUPERHERO_API}/search/${title}`)
       .then(data => {
         res.status(200).json(data.data.results)
@@ -81,19 +83,22 @@ class Controller {
         next(err)
       })
   }
+
   static getManga(req, res, next) {
-    const { title } = req.body
+    const title = req.query.title
+    console.log(req.query);
     axios.get(`https://mangamint.kaedenoki.net/api/search/${title}`)
       .then(data => {
-        res.status(200).json(data.data.manga_list)
+        res.status(200).json(data.data)
       })
       .catch(err => {
+        console.log(err);
         next(err)
       })
-
   }
+  
   static getGame(req, res, next) {
-    const { title } = req.body
+    const { title } = req.query
     axios.get(`https://www.cheapshark.com/api/1.0/games?title=${title}&limit=60`)
       .then(data => {
         res.status(200).json(data.data)
