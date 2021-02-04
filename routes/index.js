@@ -5,8 +5,8 @@ const { authenticate } = require('../middlewares/authenticate')
 
 router.post('/login', Controller.login)
 router.use(authenticate)
-// router.get('/manga', Controller.getManga)
-// router.get('/comic', Controller.getComic)
-// router.get('/game', Controller.getGame)
+router.get('/manga', controller.getManga)
+router.get('/comic', controller.getComic)
+router.get('/game', controller.getGame)
 
 module.exports = router
