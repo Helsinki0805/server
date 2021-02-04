@@ -33,6 +33,11 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           args: true,
           msg: "Password cannot be empty"
+        },
+        minLength(value) {
+          if (value.length < 6) {
+            throw new Error('Use 6 characters or more for your password')
+          }
         }
       }
     }
