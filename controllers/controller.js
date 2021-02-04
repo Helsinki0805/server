@@ -94,7 +94,7 @@ class Controller {
       .catch(err => {
         console.log(err);
         next(err)
-      })
+      }) 
   }
   
   static getGame(req, res, next) {
