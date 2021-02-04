@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "postgress",
-    "password": null,
+    "username": "postgres",
+    "password": "Milandak123",
     "database": "comic-manga-games-db",
     "host": "localhost",
-    "dialect": "postgress"
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
