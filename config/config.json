@@ -1,7 +1,6 @@
 {
   "development": {
     "username": "postgres",
-    "password": "rampokss",
     "password": "Milandak123",
     "database": "comic-manga-games-db",
     "host": "localhost",
