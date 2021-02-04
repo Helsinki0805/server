@@ -16,4 +16,5 @@ const authenticate = function (req, res, next) {
   }
 }
 
+
 module.exports = { authenticate, createToken }
