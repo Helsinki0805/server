@@ -3,6 +3,7 @@ const router = express.Router()
 const Controller = require('../controllers/controller')
 const { authenticate } = require('../middlewares/authenticate')
 
+router.post('/register', Controller.register)
 router.post('/login', Controller.login)
 router.post('/googleLogin', Controller.googleLogin)
 router.use(authenticate)

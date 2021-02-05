@@ -174,3 +174,78 @@ _Response (500)_
   "message": "Internal Server Error"
 }
 ```
+
+## POST /googleLogin
+
+Request Header
+
+```Not Needed```
+
+Request Body
+
+```javascript
+{
+    "id_token": "<your id_token>"
+}
+```
+
+_Response(200)
+```javascript
+{
+    "access_token": "<your access_token>"
+}
+```
+OR
+
+_Response(201)
+```javascript
+{
+    "access_token": "<your access_token>"
+}
+```
+
+_Response(401)
+```javascript
+{
+    "message":  "<Invalid Email/Password>" ,
+    
+}
+```
+
+## POST /register
+
+> Create User
+
+_Request Header_
+```
+not needed
+```
+
+_Request Body_
+```javascript
+{
+    "email": "<User's email>",
+    "password": "<User's password>"
+}
+```
+
+_Response(201)_
+```javascript
+{
+    "email": "<User's email>",
+    "password": "<User's password>"
+}
+```
+_Response(400- bad request)_
+```javascript
+{
+    "Error" :  "VALIDATION_ERROR"
+    "message": "Email required, Password required, Email has been used"
+}
+```
+_Response (500)_
+```javascript
+{
+  "Error": "UNKNOWN_ERROR",
+  "message": "Internal Server Error"
+}
