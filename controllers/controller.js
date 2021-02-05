@@ -5,7 +5,7 @@ const { OAuth2Client } = require('google-auth-library');
 
 class Controller {
   static login(req, res, next) {
-    const {email, password} = req.body
+    const { email, password } = req.body
     console.log(email, password);
     let inputData = {
       email: req.body.email,
@@ -85,18 +85,16 @@ class Controller {
   }
 
   static getManga(req, res, next) {
-    const title = req.query.title
-    console.log(req.query);
+    const { title } = req.query
     axios.get(`https://mangamint.kaedenoki.net/api/search/${title}`)
       .then(data => {
         res.status(200).json(data.data)
       })
       .catch(err => {
-        console.log(err);
         next(err)
-      }) 
+      })
   }
-  
+
   static getGame(req, res, next) {
     const { title } = req.query
     axios.get(`https://www.cheapshark.com/api/1.0/games?title=${title}&limit=60`)
