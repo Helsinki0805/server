@@ -1,5 +1,6 @@
 const { User } = require('../models/index.js')
 const { createToken } = require('../middlewares/authenticate')
+const { comparePassword } = require('../helpers/bcrypt.js')
 const axios = require('axios')
 const { OAuth2Client } = require('google-auth-library');
 
@@ -14,12 +15,13 @@ class Controller {
     User
       .findOne({
         where: {
-          email: inputData.email,
-          password: inputData.password
+          email: inputData.email
         }
       })
       .then((data) => {
         if (!data) throw { name: 'customError', msg: 'Invalid email or password' }
+        let comparePass = comparePassword(inputData.password, data.password)
+        if (!comparePass) throw { name: 'customError', msg: 'Invalid email or password' }
         let accessToken = createToken({
           id: data.id,
           email: data.email
@@ -102,6 +104,21 @@ class Controller {
         res.status(200).json(data.data)
       })
       .catch(err => {
+        next(err)
+      })
+  }
+
+  static register(req, res, next) {
+    let inputData = {
+      email: req.body.email,
+      password: req.body.password
+    }
+    User
+      .create(inputData)
+      .then((data) => {
+        res.status(201).json(data)
+      })
+      .catch((err) => {
         next(err)
       })
   }
